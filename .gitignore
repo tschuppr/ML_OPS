@@ -55,6 +55,13 @@ cover/
 *.mo
 *.pot
 
+# MLFlow stuff
+mlruns
+mlartifacts
+
+# Ngrok stuff
+ngrok_auth.txt
+
 # Django stuff:
 *.log
 local_settings.py
