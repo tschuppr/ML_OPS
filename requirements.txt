@@ -58,7 +58,6 @@ psutil==6.0.0
 pure-eval==0.2.2
 pyarrow==15.0.2
 Pygments==2.18.0
-pyngrok==7.1.6
 pyparsing==3.1.2
 python-dateutil==2.9.0.post0
 pytz==2024.1
