@@ -59,6 +59,10 @@ cover/
 mlruns
 mlartifacts
 
+# Data stuff
+data/gentle
+data/rough
+
 # Ngrok stuff
 ngrok_auth.txt
 
