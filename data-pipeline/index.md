@@ -26,6 +26,14 @@ Typical DVC workflow:
 
 ```shell
 dvc init
+dvc import https://github.com/tschuppr/ML_OPS/ data
 git rm -r --cached 'data'
 dvc add data
+```
+
+Remote Storage: Google Drive
+```shell
+dvc remote add myremote gdrive://appDataFolder
+dvc remote default myremote
+dvc push
 ```
