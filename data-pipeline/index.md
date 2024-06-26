@@ -37,3 +37,59 @@ dvc remote add myremote gdrive://appDataFolder
 dvc remote default myremote
 dvc push
 ```
+## PyCaret
+
+We use a XGBoost model to compare performances.
+```shell
+pip install xgboost
+```
+
+Raw data import without pre-process
+```python
+from pycaret.classification import *
+import pandas as pd
+df = pd.read_csv('data/labelled_train.csv')
+s = setup(data=df, target='Survived')
+model = create_model('xgboost')
+# evaluate_model(model) can only be used in Notebook
+plot_model(model, plot = 'auc')
+plot_model(model, plot = 'confusion_matrix')
+predict_model(model, data=pd.read_csv('data/unlabelled_test.csv'), raw_score=True)
+```
+
+Data pre-process
+```python
+from pycaret.classification import *
+import pandas as pd
+df = pd.read_csv('data/labelled_train.csv')
+s = setup(data=df,
+          target='Survived',
+          numeric_imputation='mean',
+          categorical_features=['Sex', 'Embarked'],
+          ignore_features=['Name', 'Ticket', 'Cabin', 'Parch'],
+          remove_outliers=True)
+create_model('xgboost', enable_categorical=True)
+```
+
+Export
+```python
+from pycaret.classification import *
+import pandas as pd
+df = pd.read_csv('data/labelled_train.csv')
+s = setup(data=df,
+          target='Survived',
+          numeric_imputation='mean',
+          categorical_features=['Sex', 'Embarked'],
+          ignore_features=['Name', 'Ticket', 'Cabin', 'Parch'],
+          remove_outliers=True)
+s.get_config()
+transformed_df = s.get_config('dataset_transformed')
+transformed_df.to_csv('data/transformed_labelled_train.csv', index=False)
+```
+
+## PyCaret additions
+
+- tune_model
+- compare_models
+- interpret_model
+- calibrate_model

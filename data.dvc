@@ -6,8 +6,8 @@ deps:
     url: https://github.com/tschuppr/ML_OPS/
     rev_lock: b79d8836292c8bc1bb48523298d41029f64b9c8a
 outs:
-- md5: cf93b860685b7062d6a7e877b2f929a4.dir
-  size: 88512
-  nfiles: 2
+- md5: fdb575ddb6735cf055c6d6db8306a74e.dir
+  size: 134090
+  nfiles: 3
   hash: md5
   path: data
