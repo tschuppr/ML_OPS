@@ -37,6 +37,7 @@ dvc remote add myremote gdrive://appDataFolder
 dvc remote default myremote
 dvc push
 ```
+
 ## PyCaret
 
 We use a XGBoost model to compare performances.
@@ -84,12 +85,15 @@ s = setup(data=df,
           remove_outliers=True)
 s.get_config()
 transformed_df = s.get_config('dataset_transformed')
-transformed_df.to_csv('data/transformed_labelled_train.csv', index=False)
+transformed_df.to_csv('data/transformed_labelled.csv', index=False)
 ```
 
-## PyCaret additions
+## Additions
 
-- tune_model
-- compare_models
-- interpret_model
-- calibrate_model
+- PyCaret:
+  - tune_model
+  - compare_models
+  - interpret_model
+  - calibrate_model
+- DVC studio
+- Dagshub

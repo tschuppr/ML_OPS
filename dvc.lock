@@ -1,0 +1,14 @@
+schema: '2.0'
+stages:
+  process_data:
+    cmd: python data-pipeline/process_labelled_data.py; python data-pipeline/process_unlabelled_data.py
+  make_dataset:
+    cmd: dvc import https://github.com/tschuppr/ML_OPS/ data
+  push_data:
+    cmd: dvc add data; dvc push
+  predict:
+    cmd: python data-pipeline/predict.py
+  process_labeled_data:
+    cmd: python data-pipeline/process_data.py -f labelled_train.csv -l True
+  process_unlabeled_data:
+    cmd: python data-pipeline/process_data.py -f unlabelled_test.csv
