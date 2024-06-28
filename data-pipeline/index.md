@@ -72,7 +72,8 @@ s = setup(data=df,
 create_model('xgboost', enable_categorical=True)
 ```
 
-Export
+## Export data for mlflow
+
 ```python
 from pycaret.classification import *
 import pandas as pd
@@ -86,6 +87,10 @@ s = setup(data=df,
 s.get_config()
 transformed_df = s.get_config('dataset_transformed')
 transformed_df.to_csv('data/transformed_labelled.csv', index=False)
+s.get_config('X_train_transformed').to_csv('data/X_train_transformed.csv', index=False)
+s.get_config('y_train_transformed').to_csv('data/y_train_transformed.csv', index=False)
+s.get_config('X_test_transformed').to_csv('data/X_test_transformed.csv', index=False)
+s.get_config('y_test_transformed').to_csv('data/y_test_transformed.csv', index=False)
 ```
 
 ## Additions
