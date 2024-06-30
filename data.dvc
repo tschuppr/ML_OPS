@@ -1,13 +1,13 @@
-md5: 58476c36c3f0c54e587f6941f6221919
+md5: 86f9ba98be3f75f6da55ac11d2320dde
 frozen: true
 deps:
 - path: data
   repo:
     url: https://github.com/tschuppr/ML_OPS/
-    rev_lock: 5c542e681e3ff81101cf5849f7dcc188a8a60f12
+    rev_lock: 5f43ae40ab59e7175b930a003d4a99c14b2917a0
 outs:
-- md5: 388661e8acc1edba35f0a95b5a55dd4d.dir
-  size: 159981
-  nfiles: 5
+- md5: cf93b860685b7062d6a7e877b2f929a4.dir
+  size: 88512
+  nfiles: 2
   hash: md5
   path: data

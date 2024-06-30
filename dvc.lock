@@ -8,7 +8,57 @@ stages:
     cmd: dvc add data; dvc push
   predict:
     cmd: python data-pipeline/predict.py
+    deps:
+    - path: data-pipeline/predict.py
+      hash: md5
+      md5: d511699a40cabe214b95687d1b0dd319
+      size: 415
+    outs:
+    - path: data_outputs/xgboost_predictions.csv
+      hash: md5
+      md5: 2a48a6ab51b2aadf66f3bc3f232b0643
+      size: 21259
   process_labeled_data:
     cmd: python data-pipeline/process_data.py -f labelled_train.csv -l True
+    deps:
+    - path: data-pipeline/process_data.py
+      hash: md5
+      md5: 54a8b9e6058cb86337aabad2191e3b69
+      size: 1452
+    outs:
+    - path: data_outputs/X_test_transformed.csv
+      hash: md5
+      md5: c8c5e7e9d792a98c8516978506b273d6
+      size: 11588
+    - path: data_outputs/X_train_transformed.csv
+      hash: md5
+      md5: b6a637335f6b16fddb24b87e94fcb7de
+      size: 25365
+    - path: data_outputs/transformed_labelled_train.csv
+      hash: md5
+      md5: d5cd4320b3f84a46006e4e8dfbb25426
+      size: 38636
+    - path: data_outputs/y_test_transformed.csv
+      hash: md5
+      md5: 4fd4484b748fff261a70b508610285c3
+      size: 545
+    - path: data_outputs/y_train_transformed.csv
+      hash: md5
+      md5: 815d44e2aed10e22759b91d6e0e011c2
+      size: 1191
   process_unlabeled_data:
     cmd: python data-pipeline/process_data.py -f unlabelled_test.csv
+    deps:
+    - path: data-pipeline/process_data.py
+      hash: md5
+      md5: 54a8b9e6058cb86337aabad2191e3b69
+      size: 1452
+    outs:
+    - path: data_outputs/transformed_unlabelled_test.csv
+      hash: md5
+      md5: f287688d51be3739a41d7fc95d3b9223
+      size: 18612
+  get_dataset:
+    cmd: dvc import https://github.com/tschuppr/ML_OPS/ data
+  delete_data:
+    cmd: rm -r data; rm -rf .dvc/cache/*

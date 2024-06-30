@@ -1,11 +1,29 @@
 stages:
-  make_dataset:
+  get_dataset:
     cmd: dvc import https://github.com/tschuppr/ML_OPS/ data
   process_labeled_data:
     cmd: python data-pipeline/process_data.py -f labelled_train.csv -l True
+    deps:
+    - data-pipeline/process_data.py
+    outs:
+    - data_outputs/transformed_labelled_train.csv
+    - data_outputs/X_train_transformed.csv
+    - data_outputs/y_train_transformed.csv
+    - data_outputs/X_test_transformed.csv
+    - data_outputs/y_test_transformed.csv
   process_unlabeled_data:
     cmd: python data-pipeline/process_data.py -f unlabelled_test.csv
+    deps:
+    - data-pipeline/process_data.py
+    outs:
+    - data_outputs/transformed_unlabelled_test.csv
   predict:
     cmd: python data-pipeline/predict.py
+    deps:
+    - data-pipeline/predict.py
+    outs:
+      - data_outputs/xgboost_predictions.csv
   push_data:
-    cmd: dvc add data; dvc push
+    cmd: dvc add data;dvc push
+  delete_raw_data:
+    cmd: rm -r data; rm -rf .dvc/cache/*
